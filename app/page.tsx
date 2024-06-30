@@ -55,6 +55,12 @@ const features = [
 ];
 
 export default function Home() {
+  const [isRotated, setIsRotated] = React.useState(false);
+
+  const toggleRotation = () => {
+    setIsRotated(!isRotated);
+  };
+
   const [isDownloading, setIsDownloading] = React.useState(false);
   const handleDownload = async (key: string) => {
     setIsDownloading(true);
@@ -165,7 +171,8 @@ export default function Home() {
           isBlurred
           width={600}
           src="https://screwltd.com/img/editor_screen.png"
-          className="origin-center hover:rotate-6"
+          className={`origin-center ${isRotated ? 'hover:rotate-6' : 'hover:-rotate-6'}`}
+          onMouseLeave={toggleRotation}
         />
       </section>
 
