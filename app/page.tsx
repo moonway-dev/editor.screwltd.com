@@ -56,8 +56,21 @@ const features = [
 
 export default function Home() {
   const [isDownloading, setIsDownloading] = React.useState(false);
-  const handleDownload = () => {
+  const handleDownload = async (key: string) => {
     setIsDownloading(true);
+    try {
+      const response = await fetch(`https://api.screwltd.com/v3/editor/download?${key}=true`);
+      const data = await response.json();
+      const url = data.url;
+
+      if (url) {
+        window.open(url, '_blank');
+      }
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   const handleGithub = () => {
@@ -95,13 +108,27 @@ export default function Home() {
             </DropdownTrigger>
             <DropdownMenu variant="faded" color="secondary" aria-label="Static Actions">
               <DropdownSection showDivider title="Stable versions">
-                <DropdownItem onClick={handleDownload}>Windows installer (64-bit)</DropdownItem>
-                <DropdownItem onClick={handleDownload}>Windows installer (ARM64)</DropdownItem>
-                <DropdownItem onClick={handleDownload}>Windows embeddable package (64-bit)</DropdownItem>
-                <DropdownItem onClick={handleDownload}>Windows embeddable package (ARM64)</DropdownItem>
+                <DropdownItem key="win64_exe" onClick={() => handleDownload('win64_exe')}>
+                  Windows installer (64-bit)
+                </DropdownItem>
+                <DropdownItem key="arm_exe" onClick={() => handleDownload('arm_exe')}>
+                  Windows installer (ARM64)
+                </DropdownItem>
+                <DropdownItem key="win64_zip" onClick={() => handleDownload('win64_zip')}>
+                  Windows embeddable package (64-bit)
+                </DropdownItem>
+                <DropdownItem key="arm_zip" onClick={() => handleDownload('arm_zip')}>
+                  Windows embeddable package (ARM64)
+                </DropdownItem>
               </DropdownSection>
               <DropdownSection title="Danger zone">
-                <DropdownItem description="Installing the 32-bit version is not recommended." onClick={handleDownload} className="text-danger" color="danger">
+                <DropdownItem
+                  key="win32_exe"
+                  description="Installing the 32-bit version is not recommended."
+                  onClick={() => handleDownload('win32_exe')}
+                  className="text-danger"
+                  color="danger"
+                >
                   Windows installer (32-bit)
                 </DropdownItem>
               </DropdownSection>
