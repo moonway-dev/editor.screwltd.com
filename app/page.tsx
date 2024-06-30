@@ -108,7 +108,7 @@ export default function Home() {
             </DropdownTrigger>
             <DropdownMenu variant="faded" color="secondary" aria-label="Static Actions">
               <DropdownSection showDivider title="Stable versions">
-                <DropdownItem key="win64_exe" onClick={() => handleDownload('win64_exe')}>
+                <DropdownItem key="win64" onClick={() => handleDownload('win64')}>
                   Windows installer (64-bit)
                 </DropdownItem>
                 <DropdownItem key="arm_exe" onClick={() => handleDownload('arm_exe')}>
@@ -123,9 +123,9 @@ export default function Home() {
               </DropdownSection>
               <DropdownSection title="Danger zone">
                 <DropdownItem
-                  key="win32_exe"
+                  key="win32"
                   description="Installing the 32-bit version is not recommended."
-                  onClick={() => handleDownload('win32_exe')}
+                  onClick={() => handleDownload('win32')}
                   className="text-danger"
                   color="danger"
                 >
