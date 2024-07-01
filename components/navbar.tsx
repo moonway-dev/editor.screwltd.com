@@ -39,6 +39,8 @@ import {
   DropdownItem
 } from "@nextui-org/dropdown";
 
+import { FormEvent } from "react";
+
 export const Navbar = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { user, login, logout } = useAuth();
@@ -47,17 +49,17 @@ export const Navbar = () => {
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const handleSubmit = async (event, onClose) => {
+  const handleSubmit = async (event: FormEvent, onClose: () => void) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      await login(email, password, rememberMe);
-      onClose();
+        await login(email, password, rememberMe);
+        onClose();
     } catch (error) {
-      console.error('Login error:', error);
+        console.error('Login error:', error);
     }
     setIsLoading(false);
-  };
+};
 
   return (
     <>

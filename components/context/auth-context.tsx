@@ -48,13 +48,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           { username: email, password: password }
         );
         const token = new URL(response.data.login_url).searchParams.get('token');
-        if (rememberMe) {
-          localStorage.setItem('token', token);
+        if (token) {
+          if (rememberMe) {
+            localStorage.setItem('token', token);
+          }
+          const userResponse = await axios.get('https://login.xsolla.com/api/users/me', {
+            headers: { Authorization: token },
+          });
+          setUser(userResponse.data);
+        } else {
+          throw new Error('Token not found in the response');
         }
-        const userResponse = await axios.get('https://login.xsolla.com/api/users/me', {
-          headers: { Authorization: token },
-        });
-        setUser(userResponse.data);
       } catch (error) {
         console.error('Login error:', error);
         throw error;
