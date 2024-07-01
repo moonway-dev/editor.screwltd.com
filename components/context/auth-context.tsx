@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios from 'axios';
 
 interface User {
@@ -13,14 +13,17 @@ interface AuthContextType {
   logout: () => void;
 }
 
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
-  
+
     useEffect(() => {
       const token = localStorage.getItem('token');
-      console.error('Login error:', token);
       if (token) {
         axios
           .get('https://login.xsolla.com/api/users/me', {
@@ -37,7 +40,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         setUser(null);
       }
     }, []);
-  
+
     const login = async (email: string, password: string, rememberMe: boolean) => {
       try {
         const response = await axios.post(
@@ -57,19 +60,18 @@ export const AuthProvider: React.FC = ({ children }) => {
         throw error;
       }
     };
-  
+
     const logout = () => {
       localStorage.removeItem('token');
       setUser(null);
     };
-  
+
     return (
       <AuthContext.Provider value={{ user, login, logout }}>
         {children}
       </AuthContext.Provider>
     );
   };
-  
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
