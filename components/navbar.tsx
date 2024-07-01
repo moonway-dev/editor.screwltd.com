@@ -71,7 +71,6 @@ export const Navbar = () => {
               <p className="font-bold" color="#9353D3">SCREW: EDITOR</p>
             </NextLink>
           </NavbarBrand>
-          {/*
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
@@ -88,7 +87,6 @@ export const Navbar = () => {
             </NavbarItem>
           ))}
         </ul>
-        */}
         </NavbarContent>
 
         <NavbarContent
@@ -103,7 +101,7 @@ export const Navbar = () => {
                 </DropdownTrigger>
                 <DropdownMenu variant="faded" color="secondary" aria-label="Static Actions">
                   <DropdownSection showDivider>
-                    <DropdownItem isDisabled>
+                    <DropdownItem href='/profile'>
                       Profile
                     </DropdownItem>
                     <DropdownItem isDisabled>
