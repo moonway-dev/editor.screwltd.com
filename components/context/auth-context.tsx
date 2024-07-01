@@ -18,13 +18,15 @@ interface AuthProviderProps {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const PROXY_URL = 'https://corsproxy.io/?';
+
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('https://login.xsolla.com/api/users/me', {
+      fetch(`${PROXY_URL}https://login.xsolla.com/api/users/me`, {
         headers: { Authorization: token },
       })
         .then(response => {
@@ -48,7 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string, rememberMe: boolean) => {
     try {
       const response = await fetch(
-        'https://login.xsolla.com/api/login?projectId=41fc3f33-4047-44a9-8868-476848f9d438',
+        `${PROXY_URL}https://login.xsolla.com/api/login?projectId=41fc3f33-4047-44a9-8868-476848f9d438`,
         {
           method: 'POST',
           headers: {
@@ -66,7 +68,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         if (rememberMe) {
           localStorage.setItem('token', token);
         }
-        const userResponse = await fetch('https://login.xsolla.com/api/users/me', {
+        const userResponse = await fetch(`${PROXY_URL}https://login.xsolla.com/api/users/me`, {
           headers: { Authorization: token },
         });
         if (!userResponse.ok) {
