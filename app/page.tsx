@@ -99,47 +99,49 @@ export default function Home() {
         </div>
 
         <div className="flex gap-3">
-          <Dropdown backdrop="blur">
-            <DropdownTrigger>
-              <Button
-                isLoading={isDownloading}
-                className={buttonStyles({
-                  color: "secondary",
-                  radius: "full",
-                  variant: "shadow",
-                })}
-              >
-                Download
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu variant="faded" color="secondary" aria-label="Static Actions">
-              <DropdownSection showDivider title="Stable versions">
-                <DropdownItem key="win64" onClick={() => handleDownload('win64')}>
-                  Windows installer (64-bit)
-                </DropdownItem>
-                <DropdownItem key="arm_exe" onClick={() => handleDownload('arm_exe')}>
-                  Windows installer (ARM64)
-                </DropdownItem>
-                <DropdownItem key="win64_zip" onClick={() => handleDownload('win64_zip')}>
-                  Windows embeddable package (64-bit)
-                </DropdownItem>
-                <DropdownItem key="arm_zip" onClick={() => handleDownload('arm_zip')}>
-                  Windows embeddable package (ARM64)
-                </DropdownItem>
-              </DropdownSection>
-              <DropdownSection title="Danger zone">
-                <DropdownItem
-                  key="win32"
-                  description="Installing the 32-bit version is not recommended."
-                  onClick={() => handleDownload('win32')}
-                  className="text-danger"
-                  color="danger"
+          <div className="hidden sm:flex ">
+            <Dropdown backdrop="blur">
+              <DropdownTrigger>
+                <Button
+                  isLoading={isDownloading}
+                  className={buttonStyles({
+                    color: "secondary",
+                    radius: "full",
+                    variant: "shadow",
+                  })}
                 >
-                  Windows installer (32-bit)
-                </DropdownItem>
-              </DropdownSection>
-            </DropdownMenu>
-          </Dropdown>
+                  Download
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="faded" color="secondary" aria-label="Static Actions">
+                <DropdownSection showDivider title="Stable versions">
+                  <DropdownItem key="win64" onClick={() => handleDownload('win64')}>
+                    Windows installer (64-bit)
+                  </DropdownItem>
+                  <DropdownItem key="arm_exe" onClick={() => handleDownload('arm_exe')}>
+                    Windows installer (ARM64)
+                  </DropdownItem>
+                  <DropdownItem key="win64_zip" onClick={() => handleDownload('win64_zip')}>
+                    Windows embeddable package (64-bit)
+                  </DropdownItem>
+                  <DropdownItem key="arm_zip" onClick={() => handleDownload('arm_zip')}>
+                    Windows embeddable package (ARM64)
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection title="Danger zone">
+                  <DropdownItem
+                    key="win32"
+                    description="Installing the 32-bit version is not recommended."
+                    onClick={() => handleDownload('win32')}
+                    className="text-danger"
+                    color="danger"
+                  >
+                    Windows installer (32-bit)
+                  </DropdownItem>
+                </DropdownSection>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
           <Button
             className={buttonStyles({ variant: "bordered", radius: "full" })}
             onClick={handleGithub}
