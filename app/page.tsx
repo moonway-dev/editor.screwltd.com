@@ -163,7 +163,7 @@ export default function Home() {
       <section className="mt-2 flex flex-col items-center justify-center text-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
           <h3 className={title()}>Unlock&nbsp;</h3>
-          <h3 className={title({ color: "violet" })}>your&nbsp;</h3><br />
+          <h3 className={title({ color: "pink" })}>your&nbsp;</h3><br />
           <h3 className={title()}>creativity</h3>
           <h3 className={title()}>.</h3>
         </div>
@@ -180,10 +180,10 @@ export default function Home() {
 
       <section className="mt-6 flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title({ color: "pink" })}>Make&nbsp;</h1>
+          <h1 className={title({ color: "violet" })}>Make&nbsp;</h1>
           <h1 className={title()}>the&nbsp;</h1><br />
           <h1 className={title()}>most of&nbsp;</h1>
-          <h1 className={title({ color: "pink" })}>power</h1>
+          <h1 className={title({ color: "violet" })}>power</h1>
           <h1 className={title()}>.</h1>
         </div>
 
@@ -202,7 +202,7 @@ export default function Home() {
       <section className="mt-8 mb-8 flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="inline-block max-w-lg text-center justify-center">
           <h1 className={title()}>Contact&nbsp;</h1>
-          <h1 className={title({ color: "violet" })}>us</h1>
+          <h1 className={title({ color: "pink" })}>us</h1>
           <h1 className={title()}>.</h1>
         </div>
 
