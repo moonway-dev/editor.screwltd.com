@@ -5,21 +5,11 @@ import { Card } from "@nextui-org/card";
 import { Button } from "@nextui-org/button";
 import { useAuth } from "@/components/context/auth-context";
 
-interface Post {
-  title: string;
-}
-
-const posts: Post[] = [
-  //{ title: 'My first post'},
-  //{ title: 'Another post'},
-];
-
-
 export default function ProfilePage() {
   const { user } = useAuth();
 
-  if(!user)
-    return(<p>Login to your account first</p>);
+  if (!user)
+    return (<p>Login to your account first</p>);
 
   return (
     <div className="p-6 flex flex-col items-center space-y-6">
@@ -36,6 +26,7 @@ export default function ProfilePage() {
       <Card className="w-full max-w-md p-4 border-transparent bg-white/5 dark:bg-default-400/10">
         <p>Works in the workshop</p>
         <div className="mt-4 space-y-4">
+          {/*
           {posts.length > 0 ? (
             posts.map((post, index) => (
               <div key={index} className="p-6 border-transparent bg-white/5 dark:bg-default-400/10 rounded-lg shadow-lg bg-white">
@@ -44,8 +35,11 @@ export default function ProfilePage() {
 
             ))
           ) : (
-            <p className="text-gray-500 text-sm">Looks like there's nothing here...</p>
+          */}
+          <p className="text-gray-500 text-sm">Looks like there's nothing here...</p>
+          {/*
           )}
+          */}
         </div>
       </Card>
     </div>
