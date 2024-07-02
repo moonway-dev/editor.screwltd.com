@@ -15,8 +15,8 @@ export default function ProfilePage() {
     <div className="p-6 flex flex-col items-center space-y-6">
       <Card className="w-full max-w-md p-4 shadow-lg border-transparent bg-white/5 dark:bg-default-400/10">
         <div className="flex flex-col items-center">
-          <Avatar src={user?.picture} className="w-20 h-20" isBordered color="secondary" />
-          <p className="mt-4 text-lg font-semibold">{user?.username}</p>
+          <Avatar src={user.picture} className="w-20 h-20" isBordered color="secondary" />
+          <p className="mt-4 text-lg font-semibold">{user.username}</p>
           <div className="mt-2 p-4 rounded-lg shadow-inner w-full text-center border-transparent bg-white/5 dark:bg-default-400/10">
             <p className="text-xl font-bold">$0.00</p>
             <p className="text-md">0.00 SLDG</p>
