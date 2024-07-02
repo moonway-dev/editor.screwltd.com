@@ -49,44 +49,46 @@ export const Navbar = () => {
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const handleSubmit = async (event: FormEvent, onClose: () => void) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-        await login(email, password, rememberMe);
-        onClose();
+      await login(email, password, rememberMe);
+      onClose();
     } catch (error) {
-        console.error('Login error:', error);
+      console.error('Login error:', error);
     }
     setIsLoading(false);
-};
+  };
 
   return (
     <>
-      <NextUINavbar maxWidth="xl">
+      <NextUINavbar onMenuOpenChange={setIsMenuOpen} maxWidth="xl">
         <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
           <NavbarBrand as="li" className="gap-3 max-w-fit">
             <NextLink className="flex justify-start items-center gap-1" href="/">
               <Image className="origin-center hover:rotate-[-360deg]" isBlurred src="https://screwltd.com/img/editor.png" width={28} height={28} />
-              <p className="font-bold" color="#9353D3">SCREW: EDITOR</p>
+              <p className="font-bold">SCREW: EDITOR</p>
             </NextLink>
           </NavbarBrand>
-        <ul className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-secondary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
-        </ul>
+          <ul className="hidden lg:flex gap-4 justify-start ml-2">
+            {siteConfig.navItems.map((item) => (
+              <NavbarItem key={item.href}>
+                <NextLink
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "data-[active=true]:text-secondary data-[active=true]:font-medium",
+                  )}
+                  color="foreground"
+                  href={item.href}
+                >
+                  {item.label}
+                </NextLink>
+              </NavbarItem>
+            ))}
+          </ul>
         </NavbarContent>
 
         <NavbarContent
@@ -127,6 +129,10 @@ export const Navbar = () => {
               </Button>
             )}
           </NavbarItem>
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
           <NavbarItem className="hidden sm:flex gap-3">
             <Link isExternal aria-label="Discord" href={siteConfig.links.discord}>
               <DiscordIcon className="text-default-500 cursor-pointer" />
@@ -136,6 +142,21 @@ export const Navbar = () => {
             <ThemeSwitch />
           </NavbarItem>
         </NavbarContent>
+
+        <NavbarMenu>
+          {siteConfig.navItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                color="foreground"
+                className="w-full"
+                href={item.href}
+                size="lg"
+              >
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
       </NextUINavbar>
 
       <Modal.Modal

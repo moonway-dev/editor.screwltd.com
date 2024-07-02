@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "Beep-boop",
   navItems: [
     {
-      label: "Docs",
+      label: "Documentation",
       href: "https://docs.screwltd.com",
     },
     {
