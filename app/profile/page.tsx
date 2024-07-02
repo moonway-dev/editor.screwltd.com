@@ -34,7 +34,7 @@ export default function ProfilePage() {
                 ))
               ) : (
               */}
-              <p className="text-gray-500 text-sm">Looks like there's nothing here...</p>
+              <p className="text-gray-500 text-sm">Looks like there&apos;s nothing here...</p>
               {/*
               )}
               */}
