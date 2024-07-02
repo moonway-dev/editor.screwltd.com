@@ -1,36 +1,10 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Spinner } from "@nextui-org/spinner";
+import {Spinner} from "@nextui-org/spinner";
 
 interface User {
   email: string;
   name: string;
   picture: string;
-  ban: string | null;
-  birthday: string;
-  connection_information: string | null;
-  country: string | null;
-  devices: any[];
-  external_id: string | null;
-  first_name: string;
-  gender: string | null;
-  groups: Array<{
-    id: number;
-    is_default: boolean;
-    is_deletable: boolean;
-    name: string;
-  }>;
-  id: string;
-  is_anonymous: boolean;
-  is_last_email_confirmed: boolean;
-  is_user_active: boolean;
-  last_login: string;
-  last_name: string;
-  nickname: string;
-  phone: string | null;
-  phone_auth: string | null;
-  registered: string;
-  tag: string;
-  username: string;
 }
 
 interface AuthContextType {
